@@ -13,6 +13,7 @@ st.write("Submit your base code and user prompt!")
 task_id = st.text_area("Task ID", "Provide the task ID")
 base_code = st.text_area("Base Code", "Provide the base code")
 user_prompt = st.text_area("Prompt", "Provide the prompt.")
+additional_context = st.text_area("Additional Context", "Provide additional context.")
 
 
 class TaskData(BaseModel):
@@ -48,7 +49,8 @@ if st.button("Evaluate"):
 
         prompt = str({
             'base_code': base_code,
-            "prompt": user_prompt
+            "system_prompt": user_prompt,
+            "additional_context": additional_context,
         })
 
         result = get_review(prompt, system_prompt, response_format)
